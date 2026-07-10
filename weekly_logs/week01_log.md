@@ -1,61 +1,55 @@
-# Week 01 Log — [Sprint Name]
+# Week 01 Log
 
-**Week:** 1  
-**Date range:** [Add dates]  
-**Team:** [Team name / number]  
-**Project:** [Project title]
+## Project
+**QuickBite – Food Delivery Operations Analytics**
 
----
+## Team
+**Team 03**
 
-## 1. Sprint Goal
-
-Write the goal for this week in 2–3 lines.
+## Week
+**Week 01**
 
 ---
 
-## 2. Work Completed
+## Week 1 Activities
 
-| Task | Owner | Status | Evidence |
-|---|---|---|---|
-| [Task] | [Student] | [Done / In progress] | [file / screenshot / notebook] |
-
----
-
-## 3. Key Decisions
-
-- [Decision 1]
-- [Decision 2]
+- Created the team GitHub repository from the official ZENAIZ template.
+- Verified that all required folders and template files were present.
+- Updated the repository with the project title and team information.
+- Assigned responsibilities among team members.
+- Reviewed the project requirements and internship guidelines.
+- Planned the project workflow and milestones.
+- Set up GitHub for collaboration and version control.
 
 ---
 
-## 4. Blockers / Risks
+## Deliverables Completed
 
-| Blocker | Impact | Help Needed |
-|---|---|---|
-| [Blocker] | [Impact] | [Help needed] |
-
----
-
-## 5. Evidence Added to GitHub
-
-- [File updated]
-- [Screenshot added]
-- [Notebook updated]
+- Team repository created successfully.
+- Repository structure verified.
+- README.md updated.
+- Problem Charter prepared.
+- Week 1 log created.
 
 ---
 
-## 6. AI Transparency Note
+## Blockers
 
-| Question | Response |
-|---|---|
-| Where AI helped | [Explain] |
-| What we changed after AI suggestion | [Explain] |
-| What we verified manually | [Explain] |
-| What we can explain without AI | [Explain] |
+- No major blockers encountered during Week 1.
+- Initial setup and repository creation completed successfully.
 
 ---
 
-## 7. Next Week Preparation
+## AI Transparency Note
 
-- [Action]
-- [Action]
+ChatGPT was used to assist with understanding the project requirements, preparing documentation, and drafting repository content. All generated content was reviewed, verified, and modified by the team before submission.
+
+---
+
+## Plan for Week 2
+
+- Collect and explore the food delivery dataset.
+- Perform data cleaning and preprocessing.
+- Design the data engineering pipeline.
+- Begin implementing data transformations.
+- Document progress and upload evidence to the repository.
