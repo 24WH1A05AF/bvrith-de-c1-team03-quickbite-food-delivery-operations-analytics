@@ -1,4 +1,4 @@
-# Problem Charter
+# Problem Character
 
 ## Project Title
 
