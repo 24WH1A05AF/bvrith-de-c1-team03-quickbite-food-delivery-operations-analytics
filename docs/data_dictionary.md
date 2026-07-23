@@ -1,7 +1,7 @@
 # Data Dictionary
 
 **Week:** 2  
-**Purpose:** Define raw, reference, Silver, and streaming fields.
+**Purpose:** Define raw, reference, Silver, and streaming fields for the QuickBite project.
 
 ---
 
@@ -9,27 +9,34 @@
 
 | File Name | Grain | Purpose | Approx. Rows | Notes |
 |---|---|---|---:|---|
-| `[source_file_1].csv` | One row per [entity/event] | [Purpose] | [rows] | [notes] |
-| `[source_file_2].csv` | One row per [entity/event] | [Purpose] | [rows] | [notes] |
-| `[reference_file].csv` | One row per [reference item] | [Purpose] | [rows] | [notes] |
-| `[streaming_events].json` | One row per event | Streaming simulation | [rows] | JSON event files |
+| `orders.csv` | One row per order | Stores customer order details | 10,000 | Primary transaction dataset |
+| `customers.csv` | One row per customer | Stores customer information | 5,000 | Customer master data |
+| `restaurants.csv` | One row per restaurant | Stores restaurant details | 500 | Reference dataset |
+| `delivery_events.json` | One row per event | Streaming delivery status updates | 15,000 | JSON event files |
 
 ---
 
-## 2. Raw File Schema: `[source_file_1].csv`
+## 2. Raw File Schema: `orders.csv`
 
 | Field Name | Data Type | Required? | Example | Description |
 |---|---|---|---|---|
-| `source_id` | string | Yes | `SRC-0001` | Unique source record ID |
-| `[field_name]` | string | Yes/No | `[example]` | [description] |
+| `order_id` | string | Yes | `ORD-1001` | Unique order ID |
+| `customer_id` | string | Yes | `CUS-2001` | Customer identifier |
+| `restaurant_id` | string | Yes | `RES-301` | Restaurant identifier |
+| `order_date` | date | Yes | `2026-07-20` | Order date |
+| `order_amount` | decimal | Yes | `450.75` | Total order amount |
+| `payment_method` | string | Yes | `UPI` | Payment mode |
 
 ---
 
-## 3. Raw File Schema: `[source_file_2].csv`
+## 3. Raw File Schema: `customers.csv`
 
 | Field Name | Data Type | Required? | Example | Description |
 |---|---|---|---|---|
-| `source_id` | string | Yes | `SRC2-0001` | Unique source record ID |
+| `customer_id` | string | Yes | `CUS-2001` | Unique customer ID |
+| `customer_name` | string | Yes | `Rahul Sharma` | Customer name |
+| `city` | string | Yes | `Hyderabad` | Customer location |
+| `phone_number` | string | No | `9876543210` | Contact number |
 
 ---
 
@@ -37,7 +44,10 @@
 
 | Field Name | Data Type | Required? | Example | Description |
 |---|---|---|---|---|
-| `reference_id` | string | Yes | `REF-001` | Reference key |
+| `restaurant_id` | string | Yes | `RES-301` | Restaurant ID |
+| `restaurant_name` | string | Yes | `Spicy Bites` | Restaurant name |
+| `category` | string | Yes | `South Indian` | Food category |
+| `location` | string | Yes | `Madhapur` | Restaurant location |
 
 ---
 
@@ -46,14 +56,17 @@
 Final Silver table name:
 
 ```text
-silver_[project_specific_table_name]
+silver_food_orders
 ```
 
 | Silver Field | Data Type | Source Mapping | Business Meaning |
 |---|---|---|---|
-| `record_id` | string | `[source field]` | Canonical record ID |
-| `event_date` | date | `[source field]` | Date used for analytics |
-| `[silver_field]` | [type] | [mapping] | [meaning] |
+| `order_id` | string | orders.order_id | Unique order identifier |
+| `customer_id` | string | orders.customer_id | Customer identifier |
+| `restaurant_id` | string | orders.restaurant_id | Restaurant identifier |
+| `order_date` | date | orders.order_date | Order date for analytics |
+| `order_amount` | decimal | orders.order_amount | Revenue generated |
+| `payment_method` | string | orders.payment_method | Payment type |
 
 ---
 
@@ -61,6 +74,8 @@ silver_[project_specific_table_name]
 
 | Field Name | Data Type | Required? | Example | Description |
 |---|---|---|---|---|
-| `event_id` | string | Yes | `EVT-0001` | Unique event ID |
-| `event_timestamp` | timestamp | Yes | `2026-07-03T10:15:00+05:30` | Event time |
-| `event_type` | string | Yes | `[event type]` | Event category |
+| `event_id` | string | Yes | `EVT-1001` | Unique event ID |
+| `event_timestamp` | timestamp | Yes | `2026-07-20T10:30:00+05:30` | Event time |
+| `event_type` | string | Yes | `Order Delivered` | Delivery event type |
+| `order_id` | string | Yes | `ORD-1001` | Related order ID |
+| `delivery_status` | string | Yes | `Delivered` | Current delivery status |
