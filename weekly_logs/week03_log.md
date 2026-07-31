@@ -1,8 +1,11 @@
 # Week 03 Log — Data Profiling, Schema Validation & Initial ETL
 
 **Week:** 3
+---
 **Date range:** **25 July 2026 – 30 July 2026**
+---
 **Team:** Team 03
+---
 **Project:** QuickBite – Food Delivery Operations Analytics
 
 ---
