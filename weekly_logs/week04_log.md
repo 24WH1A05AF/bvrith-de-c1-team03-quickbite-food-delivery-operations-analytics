@@ -1,11 +1,8 @@
 # Week 04 Log — Bronze Layer Data Ingestion
 
 **Week:** 4  
---
 **Date range:** 27 July 2026 – 31 July 2026  
---
 **Team:** Team 03  
---
 **Project:** QuickBite – Food Delivery Operations Analytics
 
 ---
@@ -20,16 +17,16 @@ The goal of Week 4 was to implement the Bronze Layer of the QuickBite data pipel
 
 | Task | Owner | Status | Evidence |
 |---|---|---|---|
-| Loaded Orders dataset (Parquet) into Spark DataFrame | Team 01 | Done | `Week04_Bronze_Ingestion` Notebook |
-| Loaded Restaurants dataset (JSON) into Spark DataFrame | Team 01 | Done | `Week04_Bronze_Ingestion` Notebook |
-| Loaded Riders dataset (CSV) into Spark DataFrame | Team 01 | Done | `Week04_Bronze_Ingestion` Notebook |
-| Loaded Refunds dataset (CSV) into Spark DataFrame | Team 01 | Done | `Week04_Bronze_Ingestion` Notebook |
-| Created temporary SQL views for all datasets | Team 01 | Done | SQL Notebook |
-| Created Bronze temporary views | Team 01 | Done | SQL Notebook |
-| Created Bronze Delta tables | Team 01 | Done | Databricks Catalog |
-| Added metadata columns (`ingestion_time`, `load_date`, `source_file`) to Bronze tables | Team 01 | Done | Bronze Delta Tables |
-| Validated Bronze tables by comparing row counts and sample records with source data | Team 01 | Done | SQL Query Results |
-| Updated Week 04 documentation and notebook | Team 01 | Done | GitHub Repository |
+| Loaded Orders dataset (Parquet) into Spark DataFrame | Team 03 | Done | `Week04_Bronze_Ingestion` Notebook |
+| Loaded Restaurants dataset (JSON) into Spark DataFrame | Team 03 | Done | `Week04_Bronze_Ingestion` Notebook |
+| Loaded Riders dataset (CSV) into Spark DataFrame | Team 03 | Done | `Week04_Bronze_Ingestion` Notebook |
+| Loaded Refunds dataset (CSV) into Spark DataFrame | Team 03 | Done | `Week04_Bronze_Ingestion` Notebook |
+| Created temporary SQL views for all datasets | Team 03 | Done | SQL Notebook |
+| Created Bronze temporary views | Team 03 | Done | SQL Notebook |
+| Created Bronze Delta tables | Team 03 | Done | Databricks Catalog |
+| Added metadata columns (`ingestion_time`, `load_date`, `source_file`) to Bronze tables | Team 03 | Done | Bronze Delta Tables |
+| Validated Bronze tables by comparing row counts and sample records with source data | Team 03 | Done | SQL Query Results |
+| Updated Week 04 documentation and notebook | Team 03 | Done | GitHub Repository |
 
 ---
 
@@ -59,7 +56,7 @@ The goal of Week 4 was to implement the Bronze Layer of the QuickBite data pipel
 - Added Bronze Layer SQL scripts
 - Added metadata implementation to Bronze tables
 - Added validation queries and screenshots
-- Updated Evidence Tracker
+- Updated the Evidence Tracker
 
 ---
 
@@ -70,7 +67,7 @@ The goal of Week 4 was to implement the Bronze Layer of the QuickBite data pipel
 | Where AI helped | AI helped explain the Bronze Layer workflow, Spark DataFrame operations, Delta Lake implementation, metadata columns, and SQL queries for validation. |
 | What we changed after AI suggestion | The team corrected file paths, selected the appropriate Spark readers, added metadata columns, and validated the Bronze tables by comparing them with the original datasets. |
 | What we verified manually | Row counts, sample records, metadata columns, Delta table creation, and validation results were manually verified before updating GitHub. |
-| What we can explain without AI | We can explain the Bronze Layer implementation, Spark DataFrames, temporary views, Delta tables, metadata columns, validation process, and the role of the Bronze Layer in the Medallion Architecture. |
+| What we can explain without AI | We can explain the Bronze Layer implementation, Spark DataFrames, temporary views, Delta tables, metadata columns, the validation process, and the role of the Bronze Layer in the Medallion Architecture. |
 
 ---
 
