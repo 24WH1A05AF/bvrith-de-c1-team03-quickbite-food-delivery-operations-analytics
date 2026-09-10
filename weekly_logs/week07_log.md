@@ -76,3 +76,4 @@ Build and validate a Gold aggregation from approved Trusted Silver data with a c
 
 * Continue with the next stage of the data engineering pipeline.
 * Use the validated Gold layer for reporting, dashboards, and advanced analytics.
+
