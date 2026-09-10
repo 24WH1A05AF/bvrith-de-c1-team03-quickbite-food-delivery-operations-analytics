@@ -1,9 +1,9 @@
 # Week 07 Log — Trusted Silver to Gold
 
-**Week:** 7
-**Date range:** 5 September 2026
-**Team:** Team 03
-**Project:** QuickBite – Food Delivery Operations Analytics
+**Week:**  7
+**Date range:**  5 September 2026
+**Team:**  Team 03
+**Project:**  QuickBite – Food Delivery Operations Analytics
 
 ---
 
