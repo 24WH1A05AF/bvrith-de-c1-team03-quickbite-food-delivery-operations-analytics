@@ -58,13 +58,8 @@ results with execution evidence.
 
 ## 5. Evidence Added to GitHub
 
-- `notebooks/07_streaming_simulation.ipynb`
-- `streaming/structured_streaming_design.md`
-- `streaming/kafka_event_schema.json`
-- `screenshots/week10_01_streaming_incremental.png`
-- `screenshots/week10_02_streaming_gold.png`
-- `screenshots/week10_03_streaming_validation.png`
-- `weekly_logs/week10_log.md`
+- 'week10_01_streaming_incremental.png'
+- 'week10_02_streaming_gold.png'
 
 ---
 
