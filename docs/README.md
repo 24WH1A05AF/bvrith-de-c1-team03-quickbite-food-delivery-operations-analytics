@@ -1,20 +1,44 @@
-# Documentation Templates
+# QuickBite — Project Documentation
 
-This folder contains the documentation templates that students will fill during the internship.
+This folder contains the documentation supporting the QuickBite Food
+Delivery Operations Analytics project.
 
-Do not complete every file in Week 1.
+The documentation explains the business problem, data design,
+data-quality validation, Gold-layer metrics, dashboard insights and
+end-to-end engineering workflow.
 
-Use the weekly sprint sheet to know which file to update.
+---
 
-## Main documents
+## Documentation Index
 
-| File | Week | Purpose |
-|---|---:|---|
-| `problem_charter.md` | 1 | Project framing |
-| `data_dictionary.md` | 2 | Source and Silver field design |
-| `synthetic_data_assumptions.md` | 2 | Synthetic data assumptions |
-| `data_quality_summary.md` | 6 | DQ rule results |
-| `gold_metrics_definition.md` | 7 | Gold KPI definitions |
-| `dashboard_insights.md` | 9 | Dashboard insight story |
-| `pipeline_walkthrough.md` | 11 | End-to-end pipeline explanation |
-| `references.md` | Any week | External references and learning links |
+| Document | Purpose |
+|---|---|
+| `problem_charter.md` | Defines the QuickBite business problem, stakeholders and project objectives |
+| `data_dictionary.md` | Documents important source and transformed data fields |
+| `synthetic_data_assumptions.md` | Records assumptions used in the synthetic operational datasets |
+| `data_quality_summary.md` | Documents Data Quality rules, validation results and identified issues |
+| `gold_metrics_definition.md` | Defines the business metrics and analytical purpose of Gold outputs |
+| `dashboard_insights.md` | Documents the key business insights derived from the Power BI dashboard |
+| `pipeline_walkthrough.md` | Explains the end-to-end QuickBite data engineering pipeline |
+| `references.md` | Records project references and learning resources |
+
+---
+
+## QuickBite Engineering Story
+
+The project follows a layered data engineering architecture:
+
+```text
+Source Data
+     ↓
+Bronze
+     ↓
+Silver
+     ↓
+Data Quality
+     ↓
+Trusted Data
+     ↓
+Gold
+     ↓
+Power BI
