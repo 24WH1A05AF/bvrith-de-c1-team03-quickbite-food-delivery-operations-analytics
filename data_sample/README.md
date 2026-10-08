@@ -1,16 +1,34 @@
-# Data Sample Folder
+# QuickBite — Streaming Data Pipeline
 
-This folder is used for small sample datasets and generated outputs used during the Data Engineering Internship project.
+## From Event Ingestion to Live Operational KPIs
 
-Recommended structure:
+QuickBite extends its batch analytics platform with a streaming pipeline
+for incremental delivery-status events.
 
-- raw/ — small raw CSV/JSON sample files
-- gold_exports/ — exported Gold outputs for Power BI
-- streaming/ — small sample streaming JSON event files
+The streaming layer transforms incoming operational events into
+standardized records, maintains the latest order status, and produces
+live operational KPIs in Databricks.
 
-Important rules:
+---
 
-- Do not upload large datasets to GitHub.
-- Keep only small sample files.
-- Use generated/synthetic data wherever possible.
-- Keep the data generation logic inside src/generate_synthetic_data.py.
+## 1. Streaming Architecture
+
+```text
+JSON DELIVERY EVENTS
+        │
+        ▼
+   AUTO LOADER
+        │
+        ▼
+STREAMING BRONZE
+        │
+        ▼
+STREAMING SILVER
+        │
+        ├──────────────────────┐
+        ▼                      ▼
+LIVE ORDER STATUS          LIVE KPIs
+        │                      │
+        └──────────┬───────────┘
+                   ▼
+          OPERATIONAL VIEW
