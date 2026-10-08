@@ -1,81 +1,106 @@
-# Data Dictionary
+# QuickBite Data Dictionary
 
-**Week:** 2  
-**Purpose:** Define raw, reference, Silver, and streaming fields for the QuickBite project.
+## Purpose
 
----
+This document defines the structure, meaning, and role of the datasets used
+throughout the QuickBite data engineering pipeline.
 
-## 1. Source File Catalog
+The data dictionary provides a common reference for source data, transformed
+data, operational identifiers, and streaming events.
 
-| File Name | Grain | Purpose | Approx. Rows | Notes |
-|---|---|---|---:|---|
-| `orders.csv` | One row per order | Stores customer order details | 10,000 | Primary transaction dataset |
-| `customers.csv` | One row per customer | Stores customer information | 5,000 | Customer master data |
-| `restaurants.csv` | One row per restaurant | Stores restaurant details | 500 | Reference dataset |
-| `delivery_events.json` | One row per event | Streaming delivery status updates | 15,000 | JSON event files |
+It supports:
 
----
-
-## 2. Raw File Schema: `orders.csv`
-
-| Field Name | Data Type | Required? | Example | Description |
-|---|---|---|---|---|
-| `order_id` | string | Yes | `ORD-1001` | Unique order ID |
-| `customer_id` | string | Yes | `CUS-2001` | Customer identifier |
-| `restaurant_id` | string | Yes | `RES-301` | Restaurant identifier |
-| `order_date` | date | Yes | `2026-07-20` | Order date |
-| `order_amount` | decimal | Yes | `450.75` | Total order amount |
-| `payment_method` | string | Yes | `UPI` | Payment mode |
+- Data ingestion and transformation
+- Data quality validation
+- Gold-layer analytical modelling
+- Power BI reporting
+- Streaming operational analytics
 
 ---
 
-## 3. Raw File Schema: `customers.csv`
+## 1. Source Data Catalog
 
-| Field Name | Data Type | Required? | Example | Description |
-|---|---|---|---|---|
-| `customer_id` | string | Yes | `CUS-2001` | Unique customer ID |
-| `customer_name` | string | Yes | `Rahul Sharma` | Customer name |
-| `city` | string | Yes | `Hyderabad` | Customer location |
-| `phone_number` | string | No | `9876543210` | Contact number |
+QuickBite uses operational datasets representing a food-delivery platform.
 
----
+| Dataset | Grain | Purpose | Actual Scale |
+|---|---|---|---:|
+| `orders` | One row per order | Core order and delivery transaction data | 150K orders |
+| `restaurants` | One row per restaurant | Restaurant master and operational information | 600 restaurants |
+| `riders` | One row per rider | Rider and delivery-partner information | 2,500 riders |
+| `refunds` | One row per refund record | Refund and exception information | 12K refunds |
 
-## 4. Reference File Schema
-
-| Field Name | Data Type | Required? | Example | Description |
-|---|---|---|---|---|
-| `restaurant_id` | string | Yes | `RES-301` | Restaurant ID |
-| `restaurant_name` | string | Yes | `Spicy Bites` | Restaurant name |
-| `category` | string | Yes | `South Indian` | Food category |
-| `location` | string | Yes | `Madhapur` | Restaurant location |
+The source layer represents operational data before transformation,
+validation, and business modelling.
 
 ---
 
-## 5. Canonical Silver Table Design
+## 2. Core Business Entities
 
-Final Silver table name:
+### Orders
+
+The order entity represents the central business transaction in QuickBite.
+
+Important identifiers include:
+
+- `order_id` — unique identifier for an order
+- `restaurant_id` — restaurant associated with the order
+- `rider_id` — rider associated with delivery activity
+- Order timestamp/date fields
+- Order value / revenue fields
+- Delivery and cancellation attributes
+
+### Restaurants
+
+The restaurant entity represents restaurants participating in the
+food-delivery platform.
+
+Important attributes include:
+
+- `restaurant_id` — unique restaurant identifier
+- Restaurant name
+- Location / city / zone information
+- Restaurant category or cuisine information
+- Operational performance attributes
+
+### Riders
+
+The rider entity represents delivery partners responsible for order
+fulfilment.
+
+Important attributes include:
+
+- `rider_id` — unique rider identifier
+- Rider-related operational attributes
+- Delivery activity
+- Performance-related measures
+
+### Refunds
+
+The refund entity represents refund transactions and customer/order
+exceptions.
+
+Important identifiers include:
+
+- Order reference
+- Refund-related identifiers
+- Refund amount
+- Refund status / reason where available
+- Refund timing information
+
+---
+
+## 3. Key Identifiers and Relationships
+
+QuickBite uses business identifiers to connect operational entities.
 
 ```text
-silver_food_orders
-```
-
-| Silver Field | Data Type | Source Mapping | Business Meaning |
-|---|---|---|---|
-| `order_id` | string | orders.order_id | Unique order identifier |
-| `customer_id` | string | orders.customer_id | Customer identifier |
-| `restaurant_id` | string | orders.restaurant_id | Restaurant identifier |
-| `order_date` | date | orders.order_date | Order date for analytics |
-| `order_amount` | decimal | orders.order_amount | Revenue generated |
-| `payment_method` | string | orders.payment_method | Payment type |
-
----
-
-## 6. Streaming Event Schema
-
-| Field Name | Data Type | Required? | Example | Description |
-|---|---|---|---|---|
-| `event_id` | string | Yes | `EVT-1001` | Unique event ID |
-| `event_timestamp` | timestamp | Yes | `2026-07-20T10:30:00+05:30` | Event time |
-| `event_type` | string | Yes | `Order Delivered` | Delivery event type |
-| `order_id` | string | Yes | `ORD-1001` | Related order ID |
-| `delivery_status` | string | Yes | `Delivered` | Current delivery status |
+                    ┌──────────────┐
+                    │ Restaurants  │
+                    │ restaurant_id│
+                    └──────┬───────┘
+                           │
+                           │
+┌──────────────┐     ┌─────▼──────┐     ┌──────────────┐
+│    Riders    │────►│   Orders   │◄────│   Refunds    │
+│   rider_id   │     │  order_id  │     │   order_id   │
+└──────────────┘     └────────────┘     └──────────────┘
